@@ -25,9 +25,17 @@ function Board() {
   };
 
   const [xIsNext, setXIsNext] = useState(true);
-
   const [square, setSquare] = useState(Array(9).fill(null));
+
+  const startOver = () => {
+    setSquare(Array(9).fill(null));
+    setXIsNext(true);
+    return;
+  }
+  
+
   const nextSquare = square.slice();
+
   const handleClick = (i) => {
     if (calculateWinner(nextSquare) || nextSquare[i]) {
       return;
@@ -108,8 +116,11 @@ function Board() {
         />
       </div>
       <div>{over}</div>
+      <button className="px-3 py-1 rounded-md mt-5" onClick={startOver}>Restart</button>
     </>
   );
 }
+
+
 
 export default Board;
